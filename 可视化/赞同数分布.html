@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 1200px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        var option = {
+			title : {
+				text: '知乎用户获得赞同数量分布',
+				x:'center'
+			},
+			tooltip : {
+				trigger: 'item',
+				formatter: "{a} <br/>{b} : {c} ({d}%)"
+			},
+			legend: {
+				orient : 'vertical',
+				x : 'left'
+				//,
+				//data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+			},
+			toolbox: {
+				show : true,
+				feature : {
+					mark : {show: true},
+					dataView : {show: true, readOnly: false},
+					magicType : {
+						show: true, 
+						type: ['pie', 'funnel'],
+						option: {
+							funnel: {
+								x: '25%',
+								width: '50%',
+								funnelAlign: 'left',
+								max: 1548
+							}
+						}
+					},
+					restore : {show: true},
+					saveAsImage : {show: true}
+				}
+			},
+			calculable : true,
+			series : [
+				{
+					name:'访问来源',
+					type:'pie',
+					radius : '80%',
+					center: ['50%', '60%'],
+					data:[
+						{value:12, name:'赞同>1000k 12人'},
+						{value:840, name:'1000k≥赞同>100k 840人'},
+						{value:10869, name:'100k≥赞同>10k 10869人'},
+						{value:34256, name:'10k≥赞同>1k 34256人'},
+						{value:47256, name:'1k≥赞同>100 47256人'},
+						{value:36986, name:'100≥赞同>10 36986人'},
+						{value:66814, name:'10≥赞同>0 66814人'}
+					]
+				}
+			]
+		};
+                    
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

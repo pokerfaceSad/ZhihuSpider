@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 1500px;height:700px;"></div>
+    <script type="text/javascript">
+		 var myChart = echarts.init(document.getElementById('main'));
+		 myChart.title = '环形图';
+
+			var option = {
+			tooltip: {
+				trigger: 'item',
+				formatter: "{a} <br/>{b}: {c} ({d}%)"
+			},
+			legend: {
+				orient: 'vertical',
+				left: 350,
+				width: 50,
+				textStyle: {
+					fontSize: 20
+				},
+				data:['男','女','未知']
+			},
+			series: [
+				{
+					name:'性别占比',
+					type:'pie',
+					radius: ['50%', '70%'],
+					avoidLabelOverlap: false,
+					label: {
+						normal: {
+							formatter: '{b}  {d}%',
+							show: true,
+							position: 'outside',
+							height: 50,
+						    textStyle: {
+								fontSize: '30'
+							}
+
+						},
+						emphasis: {
+							show: true,
+							textStyle: {
+								fontSize: '30',
+								fontWeight: 'bold'
+							}
+						}
+					},
+					labelLine: {
+						normal: {
+							show: false
+						}
+					},
+					data:[
+						{value:70980, name:'女'},
+						{value:18863, name:'未知'},
+						{value:106338, name:'男'}
+					]
+				}
+			]
+		};
+
+		myChart.setOption(option);
+    </script>
+</body>
+</html>
